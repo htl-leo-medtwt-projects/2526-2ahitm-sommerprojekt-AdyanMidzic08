@@ -3,7 +3,7 @@
 }
 
 @font-face {
-  font-family: 'basicFont';
+  font-family: "basicFont";
   src: url(./Font/CascadiaMono-Italic-VariableFont_wght.ttf);
 }
 
@@ -30,12 +30,46 @@ body {
 
 /* Logo */
 #navigation img.logo {
-  width: 8%;
-  min-width: 80px;
-  max-width: 150px;
+  width: 12%;
+  min-width: 110px;
+  max-width: 220px;
   height: 100%;
   object-fit: contain;
   user-select: none;
+}
+
+/* Hero-Bereich */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: headlines;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hero-brand {
+  margin: 0;
+  font-family: headlines;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #d7b8e6;
+}
+
+.hero-logo {
+  margin-top: 0.5rem;
+  width: 20%;
+  height: auto;
 }
 
 /* XP Bereich */
