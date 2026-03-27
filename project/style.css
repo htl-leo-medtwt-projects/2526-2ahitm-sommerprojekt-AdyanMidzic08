@@ -2,9 +2,20 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'basicFont';
+  src: url(./Font/CascadiaMono-Italic-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: headlines;
+  src: url(./Font/LuckiestGuy-Regular.ttf);
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
+  font-family: basicFont;
 }
 
 #navigation {
