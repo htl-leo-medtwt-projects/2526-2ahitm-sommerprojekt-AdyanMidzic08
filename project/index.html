@@ -6,7 +6,7 @@
     <title>FactForge</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./Images/Logo.png" type="image/x-icon" />
-    <script src="./script.js" defer></script>
+    <script type="module" src="./scripts/animate.js" defer></script>
   </head>
   <body>
     <div class="manual-icons" aria-hidden="true">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="hero">
+    <section class="hero">
       <div class="hero-title-row">
         <img
           class="headline-icon left"
@@ -58,6 +58,40 @@
       </div>
       <h1 class="hero-brand">FactForge</h1>
       <img src="./Images/Logo.png" alt="FactForge Logo" class="hero-logo" />
-    </div>
+    </section>
+
+    <section class="tutorial" aria-labelledby="tutorial-heading">
+      <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
+      <div class="tutorial-grid">
+        <div class="tutorial-box box-light">
+          <h3>Quiz gezielt starten</h3>
+          <p>
+            Wähle ein Themengebiet und starte sofort eine neue Runde, um dein
+            Wissen strukturiert zu testen.
+          </p>
+        </div>
+        <div class="tutorial-box box-dark">
+          <h3>Fragen sicher beantworten</h3>
+          <p>
+            Beantworte Multiple-Choice-Fragen in kurzer Zeit. Jede korrekte
+            Antwort verbessert direkt deinen Fortschritt.
+          </p>
+        </div>
+        <div class="tutorial-box box-dark">
+          <h3>XP und Fortschritt sammeln</h3>
+          <p>
+            Nach jeder abgeschlossenen Runde sammelst du XP und siehst deinen
+            aktuellen Stand sofort in der Fortschrittsleiste.
+          </p>
+        </div>
+        <div class="tutorial-box box-light">
+          <h3>Knowledge im Spiel uben</h3>
+          <p>
+            Wiederhole schwierige Themen regelmassig, damit du dein Knowledge im
+            Spiel gezielt uben und langfristig festigen kannst.
+          </p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
