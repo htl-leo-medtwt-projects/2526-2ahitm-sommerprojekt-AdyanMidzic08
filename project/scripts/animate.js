@@ -4,7 +4,7 @@ import {
 } from "../node_modules/animejs/dist/modules/index.js";
 
 
-// anime.js animation with help from ki
+// anime.js animation with help from
 const splitIntoChars = (selector) => {
   const element = document.querySelector(selector);
   if (!element) return [];

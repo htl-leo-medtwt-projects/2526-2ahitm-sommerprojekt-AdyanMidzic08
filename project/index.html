@@ -6,6 +6,9 @@
     <title>FactForge</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./Images/Logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./node_modules/aos/dist/aos.css" />
+
+    <script src="./node_modules/aos/dist/aos.js"></script>
     <script type="module" src="./scripts/animate.js" defer></script>
   </head>
   <body>
@@ -63,28 +66,28 @@
     <section id="tutorial" class="tutorial" aria-labelledby="tutorial-heading">
       <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
       <div class="tutorial-grid">
-        <div class="tutorial-box box-light">
+        <div class="tutorial-box box-light" data-aos="fade-down">
           <h3>Quiz gezielt starten</h3>
           <p>
             Wähle ein Themengebiet und starte sofort eine neue Runde, um dein
             Wissen strukturiert zu testen.
           </p>
         </div>
-        <div class="tutorial-box box-dark">
+        <div class="tutorial-box box-dark" data-aos="fade-down">
           <h3>Fragen sicher beantworten</h3>
           <p>
             Beantworte Multiple-Choice-Fragen in kurzer Zeit. Jede korrekte
             Antwort verbessert direkt deinen Fortschritt.
           </p>
         </div>
-        <div class="tutorial-box box-dark">
+        <div class="tutorial-box box-dark" data-aos="fade-up">
           <h3>XP und Fortschritt sammeln</h3>
           <p>
             Nach jeder abgeschlossenen Runde sammelst du XP und siehst deinen
             aktuellen Stand sofort in der Fortschrittsleiste.
           </p>
         </div>
-        <div class="tutorial-box box-light">
+        <div class="tutorial-box box-light" data-aos="fade-up">
           <h3>Knowledge im Spiel uben</h3>
           <p>
             Wiederhole schwierige Themen regelmassig, damit du dein Knowledge im
@@ -94,7 +97,11 @@
       </div>
     </section>
 
-    <section class="mode-select" aria-labelledby="mode-select-heading">
+    <section
+      class="mode-select"
+      aria-labelledby="mode-select-heading"
+      data-aos="flip-up"
+    >
       <h2 id="mode-select-heading" class="mode-select-title">
         Choose Your Mode
       </h2>
@@ -124,7 +131,7 @@
           </p>
         </div>
 
-          <div class="footer-section footer-quicklinks">
+        <div class="footer-section footer-quicklinks">
           <h3>Schnellzugriff</h3>
           <ul>
             <li><a href="./FooterUnterseiten/Impressum.html">Impressum</a></li>
@@ -185,4 +192,18 @@
       </div>
     </footer>
   </body>
+
+  <script>
+    AOS.init({
+      once: false,
+      mirror: true,
+      offset: 20,
+      anchorPlacement: "top-bottom",
+      duration: 800,
+      easing: "ease-out-cubic",
+    });
+
+    window.addEventListener("load", () => AOS.refreshHard());
+    window.addEventListener("resize", () => AOS.refresh());
+  </script>
 </html>
