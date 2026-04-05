@@ -35,12 +35,12 @@
       <div class="nav-links">
         <a href="#">User</a>
         <a href="#">Dailys</a>
-        <a href="#">Tutorial</a>
-        <a href="#">Home</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#home">Home</a>
       </div>
     </div>
 
-    <section class="hero">
+    <section id="home" class="hero">
       <div class="hero-title-row">
         <img
           class="headline-icon left"
@@ -60,7 +60,7 @@
       <img src="./Images/Logo.png" alt="FactForge Logo" class="hero-logo" />
     </section>
 
-    <section class="tutorial" aria-labelledby="tutorial-heading">
+    <section id="tutorial" class="tutorial" aria-labelledby="tutorial-heading">
       <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
       <div class="tutorial-grid">
         <div class="tutorial-box box-light">
@@ -91,6 +91,21 @@
             Spiel gezielt uben und langfristig festigen kannst.
           </p>
         </div>
+      </div>
+    </section>
+
+    <section class="mode-select" aria-labelledby="mode-select-heading">
+      <h2 id="mode-select-heading" class="mode-select-title">
+        Choose Your Mode
+      </h2>
+      <p class="mode-select-text">
+        Wähle deinen Spielmodus und starte direkt mit einer neuen Challenge.
+      </p>
+      <div class="mode-buttons">
+        <button class="mode-btn mode-btn-dailys" type="button">Dailys</button>
+        <button class="mode-btn mode-btn-knowledge" type="button">
+          Knowledge
+        </button>
       </div>
     </section>
   </body>
