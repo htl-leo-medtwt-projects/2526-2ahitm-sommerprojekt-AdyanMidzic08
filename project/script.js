@@ -15,7 +15,6 @@ function runLoading(onDone) {
     if (typeof onDone === "function") {
       onDone();
     }
-    return;
   }
 
   isLoading = true;
@@ -56,6 +55,8 @@ let knowledge = document.querySelector(".mode-btn-knowledge");
 let home = document.getElementById("home");
 let knowledgeSection = document.getElementById("knowledge");
 let navigationLinks = document.querySelector(".nav-links");
+let userBtn = document.getElementById("user-btn");
+let userPage = document.getElementById("UserPage");
 
 knowledgeSection.style.display = "none";
 
@@ -67,4 +68,9 @@ knowledge.addEventListener("click", function () {
       navigationLinks.style.display = "none";
     }
   });
+});
+
+userBtn.addEventListener("click", function () {
+    home.style.display = "none";
+    userPage.style.display = "";
 });

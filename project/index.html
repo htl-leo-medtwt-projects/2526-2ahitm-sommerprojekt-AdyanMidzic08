@@ -54,7 +54,7 @@
       </div>
 
       <div class="nav-links">
-        <a href="#">User</a>
+        <a id="user-btn" href="#">User</a>
         <a href="#">Dailys</a>
         <a href="#tutorial">Tutorial</a>
         <a href="./index.html">Home</a>
@@ -139,6 +139,84 @@
           </button>
         </div>
       </section>
+    </div>
+
+    <div id="UserPage">
+      <div id="info-box">
+        <div class="userpage-head">
+          <h2>Player Profile</h2>
+          <p>Dein persönlicher FactForge Bereich</p>
+        </div>
+
+        <div class="profile-main-grid">
+          <article class="profile-card profile-card-streak">
+            <h3>Daily Streak</h3>
+            <p class="profile-big">12 Tage</p>
+            <div class="profile-meter">
+              <div class="profile-meter-fill" style="width: 60%"></div>
+            </div>
+          </article>
+
+          <article class="profile-card profile-card-coins">
+            <h3>Coins</h3>
+            <p class="profile-big">1.480</p>
+            <p class="profile-sub">Nächstes Ziel: 2.000</p>
+          </article>
+
+          <article class="profile-card profile-card-time">
+            <h3>Spielzeit</h3>
+            <p class="profile-big">37h 24m</p>
+            <p class="profile-sub">diese Woche: 5h 10m</p>
+          </article>
+        </div>
+
+        <section
+          class="profile-achievements"
+          aria-labelledby="achievements-title"
+        >
+          <div class="achievements-title-row">
+            <h3 id="achievements-title">Achievements</h3>
+            <span>7 von 12 freigeschaltet</span>
+          </div>
+
+          <div class="achievements-grid">
+            <article class="achievement-tile unlocked">
+              <img src="./Images/Icons/Icon1.png" alt="First Steps Badge" />
+              <div>
+                <h4>First Steps</h4>
+                <p>Erste Quizrunde abgeschlossen</p>
+              </div>
+            </article>
+
+            <article class="achievement-tile unlocked">
+              <img src="./Images/Icons/Icon2.png" alt="Streak Master Badge" />
+              <div>
+                <h4>Streak Master</h4>
+                <p>7 Tage in Folge gespielt</p>
+              </div>
+            </article>
+
+            <article class="achievement-tile unlocked">
+              <img
+                src="./Images/Icons/Icon3.png"
+                alt="Knowledge Hunter Badge"
+              />
+              <div>
+                <h4>Knowledge Hunter</h4>
+                <p>50 richtige Antworten erreicht</p>
+              </div>
+            </article>
+
+            <article class="achievement-tile locked">
+              <img src="./Images/Icons/Icon4.png" alt="Level Boss Badge" />
+              <div>
+                <h4>Level Boss</h4>
+                <p>200 Coins in einer Session sammeln</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
     </div>
 
     <section id="knowledge" aria-labelledby="knowledge-title">
