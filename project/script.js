@@ -15,6 +15,7 @@ function runLoading(onDone) {
     if (typeof onDone === "function") {
       onDone();
     }
+    return;
   }
 
   isLoading = true;
@@ -57,20 +58,51 @@ let knowledgeSection = document.getElementById("knowledge");
 let navigationLinks = document.querySelector(".nav-links");
 let userBtn = document.getElementById("user-btn");
 let userPage = document.getElementById("UserPage");
+let tutorialLink = document.querySelector('.nav-links a[href="#tutorial"]');
+let homeLink = document.querySelector('.nav-links a[href="./index.html"]');
+let tutorialSection = document.getElementById("tutorial");
 
 knowledgeSection.style.display = "none";
+userPage.style.display = "none";
+
+function showHomePage() {
+  home.style.display = "";
+  knowledgeSection.style.display = "none";
+  userPage.style.display = "none";
+}
 
 knowledge.addEventListener("click", function () {
   runLoading(function () {
     home.style.display = "none";
+    userPage.style.display = "none";
     knowledgeSection.style.display = "";
-    if (navigationLinks) {
-      navigationLinks.style.display = "none";
-    }
   });
 });
 
-userBtn.addEventListener("click", function () {
+userBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  runLoading(function () {
     home.style.display = "none";
-    userPage.style.display = "";
+    knowledgeSection.style.display = "none";
+    userPage.style.display = "flex";
+  });
+});
+
+tutorialLink.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  runLoading(function () {
+    showHomePage();
+    tutorialSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+homeLink.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  runLoading(function () {
+    showHomePage();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 });
