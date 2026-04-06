@@ -3,8 +3,7 @@ import {
   stagger,
 } from "../node_modules/animejs/dist/modules/index.js";
 
-
-// anime.js animation with help from
+// anime.js animation with help from KI
 const splitIntoChars = (selector) => {
   const element = document.querySelector(selector);
   if (!element) return [];
@@ -42,41 +41,53 @@ window.addEventListener("load", () => {
 });
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const welcomeChars = splitIntoChars(".hero-title");
+  const runHeroAnimation = () => {
+    const welcomeChars = splitIntoChars(".hero-title");
 
-  animate(welcomeChars, {
-    opacity: [0, 1],
-    y: [34, 0],
-    scale: [0.84, 1],
-    rotate: { from: -14 },
-    delay: stagger(65, { from: "center", start: 120 }),
-    duration: 760,
-    ease: "outBack",
-  });
+    animate(welcomeChars, {
+      opacity: [0, 1],
+      y: [34, 0],
+      scale: [0.84, 1],
+      rotate: { from: -14 },
+      delay: stagger(65, { from: "center", start: 120 }),
+      duration: 760,
+      ease: "outBack",
+    });
 
-  animate(welcomeChars, {
-    color: ["#ffc0cb", "#"],
-    duration: 980,
-    delay: stagger(65, { from: "center", start: 330 }),
-    ease: "inOutSine",
-  });
+    animate(welcomeChars, {
+      color: ["#ffc0cb", "#d7b8e6"],
+      duration: 980,
+      delay: stagger(65, { from: "center", start: 330 }),
+      ease: "inOutSine",
+    });
 
-  animate(".hero-brand", {
-    opacity: [0, 1],
-    y: [40, 0],
-    rotate: { from: -8 },
-    delay: 420,
-    duration: 900,
-    ease: "inOutQuint",
-  });
+    animate(".hero-brand", {
+      opacity: [0, 1],
+      y: [40, 0],
+      rotate: { from: -8 },
+      delay: 420,
+      duration: 900,
+      ease: "inOutQuint",
+    });
 
-  animate(".hero-logo", {
-    opacity: [0, 1],
-    y: [26, 0],
-    scale: [0.88, 1],
-    rotate: { from: 6 },
-    duration: 1200,
-    delay: 460,
-    ease: "outElastic(1, .65)",
-  });
+    animate(".hero-logo", {
+      opacity: [0, 1],
+      y: [26, 0],
+      scale: [0.88, 1],
+      rotate: { from: 6 },
+      duration: 1200,
+      delay: 460,
+      ease: "outElastic(1, .65)",
+    });
+  };
+
+  // Hilfe von Ki um die Animation erst nach dem Laden zu starten und nicht gleichzeitig mit dem Ladebildschirm
+  let loadingScreen = document.getElementById("loadingScreen");
+  if (!loadingScreen || loadingScreen.classList.contains("is-hidden")) {
+    runHeroAnimation();
+  } else {
+    window.addEventListener("factforge:loading-done", runHeroAnimation, {
+      once: true,
+    });
+  }
 }

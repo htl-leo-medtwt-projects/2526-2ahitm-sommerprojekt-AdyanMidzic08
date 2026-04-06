@@ -10,8 +10,24 @@
 
     <script src="./node_modules/aos/dist/aos.js"></script>
     <script type="module" src="./scripts/animate.js" defer></script>
+    <script src="./script.js" defer></script>
   </head>
   <body>
+    <div id="loadingScreen" aria-live="polite" aria-label="Loading screen">
+      <div class="loading-content">
+        <h1 class="loading-title">Have fun with FactForge</h1>
+        <img
+          class="loading-logo"
+          src="./Images/Logo.png"
+          alt="FactForge Logo"
+        />
+        <div class="loading-track" aria-hidden="true">
+          <div class="loading-fill" id="loadingFill"></div>
+        </div>
+        <p class="loading-percent" id="loadingPercent">0%</p>
+      </div>
+    </div>
+
     <div class="manual-icons" aria-hidden="true">
       <img class="icon i1" src="./Images/Icons/Icon1.png" alt="" />
       <img class="icon i2" src="./Images/Icons/Icon2.png" alt="" />
@@ -28,7 +44,9 @@
     </div>
 
     <div id="navigation">
-      <img src="./Images/Logo.png" alt="Logo" class="logo" />
+      <a href="./index.html">
+        <img src="./Images/Logo.png" alt="Logo" class="logo" />
+      </a>
 
       <div class="xp">
         <span>#Xp</span>
@@ -39,80 +57,114 @@
         <a href="#">User</a>
         <a href="#">Dailys</a>
         <a href="#tutorial">Tutorial</a>
-        <a href="#home">Home</a>
+        <a href="./index.html">Home</a>
       </div>
     </div>
 
-    <section id="home" class="hero">
-      <div class="hero-title-row">
-        <img
-          class="headline-icon left"
-          src="./Images/Icons/Icon2.png"
-          alt=""
-          aria-hidden="true"
-        />
-        <h1 class="hero-title">Welcome to</h1>
-        <img
-          class="headline-icon right"
-          src="./Images/Icons/Icon3.png"
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
-      <h1 class="hero-brand">FactForge</h1>
-      <img src="./Images/Logo.png" alt="FactForge Logo" class="hero-logo" />
-    </section>
+    <div id="home">
+      <section id="home" class="hero">
+        <div class="hero-title-row">
+          <img
+            class="headline-icon left"
+            src="./Images/Icons/Icon2.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <h1 class="hero-title">Welcome to</h1>
+          <img
+            class="headline-icon right"
+            src="./Images/Icons/Icon3.png"
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
+        <h1 class="hero-brand">FactForge</h1>
+        <img src="./Images/Logo.png" alt="FactForge Logo" class="hero-logo" />
+      </section>
 
-    <section id="tutorial" class="tutorial" aria-labelledby="tutorial-heading">
-      <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
-      <div class="tutorial-grid">
-        <div class="tutorial-box box-light" data-aos="fade-down">
-          <h3>Quiz gezielt starten</h3>
-          <p>
-            Wähle ein Themengebiet und starte sofort eine neue Runde, um dein
-            Wissen strukturiert zu testen.
-          </p>
+      <section
+        id="tutorial"
+        class="tutorial"
+        aria-labelledby="tutorial-heading"
+      >
+        <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
+        <div class="tutorial-grid">
+          <div class="tutorial-box box-light" data-aos="fade-down">
+            <h3>Quiz gezielt starten</h3>
+            <p>
+              Wähle ein Themengebiet und starte sofort eine neue Runde, um dein
+              Wissen strukturiert zu testen.
+            </p>
+          </div>
+          <div class="tutorial-box box-dark" data-aos="fade-down">
+            <h3>Fragen sicher beantworten</h3>
+            <p>
+              Beantworte Multiple-Choice-Fragen in kurzer Zeit. Jede korrekte
+              Antwort verbessert direkt deinen Fortschritt.
+            </p>
+          </div>
+          <div class="tutorial-box box-dark" data-aos="fade-up">
+            <h3>XP und Fortschritt sammeln</h3>
+            <p>
+              Nach jeder abgeschlossenen Runde sammelst du XP und siehst deinen
+              aktuellen Stand sofort in der Fortschrittsleiste.
+            </p>
+          </div>
+          <div class="tutorial-box box-light" data-aos="fade-up">
+            <h3>Knowledge im Spiel uben</h3>
+            <p>
+              Wiederhole schwierige Themen regelmassig, damit du dein Knowledge
+              im Spiel gezielt uben und langfristig festigen kannst.
+            </p>
+          </div>
         </div>
-        <div class="tutorial-box box-dark" data-aos="fade-down">
-          <h3>Fragen sicher beantworten</h3>
-          <p>
-            Beantworte Multiple-Choice-Fragen in kurzer Zeit. Jede korrekte
-            Antwort verbessert direkt deinen Fortschritt.
-          </p>
-        </div>
-        <div class="tutorial-box box-dark" data-aos="fade-up">
-          <h3>XP und Fortschritt sammeln</h3>
-          <p>
-            Nach jeder abgeschlossenen Runde sammelst du XP und siehst deinen
-            aktuellen Stand sofort in der Fortschrittsleiste.
-          </p>
-        </div>
-        <div class="tutorial-box box-light" data-aos="fade-up">
-          <h3>Knowledge im Spiel uben</h3>
-          <p>
-            Wiederhole schwierige Themen regelmassig, damit du dein Knowledge im
-            Spiel gezielt uben und langfristig festigen kannst.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section
-      class="mode-select"
-      aria-labelledby="mode-select-heading"
-      data-aos="flip-up"
-    >
-      <h2 id="mode-select-heading" class="mode-select-title">
-        Choose Your Mode
-      </h2>
-      <p class="mode-select-text">
-        Wähle deinen Spielmodus und starte direkt mit einer neuen Challenge.
-      </p>
-      <div class="mode-buttons">
-        <button class="mode-btn mode-btn-dailys" type="button">Dailys</button>
-        <button class="mode-btn mode-btn-knowledge" type="button">
-          Knowledge
-        </button>
+      <section
+        id="mode"
+        class="mode-select"
+        aria-labelledby="mode-select-heading"
+        data-aos="flip-up"
+      >
+        <h2 id="mode-select-heading" class="mode-select-title">
+          Choose Your Mode
+        </h2>
+        <p class="mode-select-text">
+          Wähle deinen Spielmodus und starte direkt mit einer neuen Challenge.
+        </p>
+        <div class="mode-buttons">
+          <button class="mode-btn mode-btn-dailys" type="button">Dailys</button>
+          <button class="mode-btn mode-btn-knowledge" type="button">
+            Knowledge
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <section id="knowledge" aria-labelledby="knowledge-title">
+      <div class="quiz-simple" data-aos="zoom-in-up">
+        <div class="quiz-simple-top">
+          <p id="knowledge-title" class="quiz-count">Frage 1 von 10</p>
+          <p class="quiz-points">0 Punkte</p>
+          <p class="quiz-streak">Streak: 0</p>
+        </div>
+
+        <h2 class="quiz-simple-question">Frage selber</h2>
+
+        <div class="quiz-simple-answers" role="group" aria-label="Antworten">
+          <div class="quiz-simple-answer">Antwort 1</div>
+          <div class="quiz-simple-answer">Antwort 2</div>
+          <div class="quiz-simple-answer">Antwort 3</div>
+          <div class="quiz-simple-answer">Antwort 4</div>
+        </div>
+
+        <div class="quiz-simple-progress-head">
+          <span>Progress</span>
+          <span>10%</span>
+        </div>
+        <div class="quiz-simple-progress">
+          <div class="quiz-simple-progress-bar"></div>
+        </div>
       </div>
     </section>
 
