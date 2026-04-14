@@ -220,7 +220,30 @@
     </div>
 
     <section id="knowledge" aria-labelledby="knowledge-title">
-      <div class="quiz-simple" data-aos="zoom-in-up">
+      <div class="quiz-mode-switch" role="group" aria-label="Quiz mode">
+        <button
+          class="quiz-mode-btn is-active"
+          type="button"
+          data-mode="multiple-choice"
+        >
+          Multiple Choice
+        </button>
+        <button class="quiz-mode-btn" type="button" data-mode="input-mode">
+          Input
+        </button>
+        <button class="quiz-mode-btn" type="button" data-mode="true-false">
+          True / False
+        </button>
+        <button class="quiz-mode-btn" type="button" data-mode="hint-mode">
+          Hint Mode
+        </button>
+      </div>
+
+      <div
+        class="quiz-simple quiz-mode is-active"
+        data-aos="zoom-in-up"
+        data-mode="multiple-choice"
+      >
         <div class="quiz-simple-top">
           <p id="knowledge-title" class="quiz-count">Question 1 of 10</p>
           <p class="quiz-points">0 points</p>
@@ -234,6 +257,93 @@
           <div class="quiz-simple-answer">Answer 2</div>
           <div class="quiz-simple-answer">Answer 3</div>
           <div class="quiz-simple-answer">Answer 4</div>
+        </div>
+
+        <div class="quiz-simple-progress-head">
+          <span>Progress</span>
+          <span>10%</span>
+        </div>
+        <div class="quiz-simple-progress">
+          <div class="quiz-simple-progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="quiz-simple quiz-mode" data-mode="input-mode" hidden>
+        <div class="quiz-simple-top">
+          <p class="quiz-count">Question 1 of 10</p>
+          <p class="quiz-points">0 points</p>
+          <p class="quiz-streak">Streak: 0</p>
+        </div>
+
+        <h2 class="quiz-simple-question">Type the correct answer:</h2>
+
+        <div class="quiz-input-wrap" role="group" aria-label="Input answer">
+          <input
+            class="quiz-input-field"
+            type="text"
+            placeholder="Write your answer..."
+          />
+          <button class="quiz-input-submit" type="button">Check Answer</button>
+        </div>
+
+        <div class="quiz-simple-progress-head">
+          <span>Progress</span>
+          <span>10%</span>
+        </div>
+        <div class="quiz-simple-progress">
+          <div class="quiz-simple-progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="quiz-simple quiz-mode" data-mode="true-false" hidden>
+        <div class="quiz-simple-top">
+          <p class="quiz-count">Question 1 of 10</p>
+          <p class="quiz-points">0 points</p>
+          <p class="quiz-streak">Streak: 0</p>
+        </div>
+
+        <h2 class="quiz-simple-question">The Danube flows through Vienna.</h2>
+
+        <div
+          class="quiz-boolean-answers"
+          role="group"
+          aria-label="True or false answers"
+        >
+          <button class="quiz-boolean-btn" type="button">True</button>
+          <button class="quiz-boolean-btn" type="button">False</button>
+        </div>
+
+        <div class="quiz-simple-progress-head">
+          <span>Progress</span>
+          <span>10%</span>
+        </div>
+        <div class="quiz-simple-progress">
+          <div class="quiz-simple-progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="quiz-simple quiz-mode" data-mode="hint-mode" hidden>
+        <div class="quiz-simple-top">
+          <p class="quiz-count">Question 1 of 10</p>
+          <p class="quiz-points">0 points</p>
+          <p class="quiz-streak">Streak: 0</p>
+        </div>
+
+        <h2 class="quiz-simple-question">Guess the answer from the clue:</h2>
+
+        <p class="quiz-hint-box">
+          Clue: This planet is known as the Red Planet.
+        </p>
+
+        <div
+          class="quiz-simple-answers"
+          role="group"
+          aria-label="Hint mode answers"
+        >
+          <div class="quiz-simple-answer">Earth</div>
+          <div class="quiz-simple-answer">Mars</div>
+          <div class="quiz-simple-answer">Saturn</div>
+          <div class="quiz-simple-answer">Neptune</div>
         </div>
 
         <div class="quiz-simple-progress-head">
