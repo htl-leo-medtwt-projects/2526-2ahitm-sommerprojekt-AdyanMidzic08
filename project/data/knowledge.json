@@ -352,5 +352,77 @@
 			"choices": ["Galileo Galilei", "Isaac Newton", "Nikola Tesla", "Marie Curie"],
 			"correctAnswer": "Isaac Newton"
 		}
+	],
+	"trueFalseQuestions": [
+		{
+			"id": 51,
+			"category": "True/False",
+			"question": "The Earth has two moons.",
+			"choices": ["True", "False"],
+			"correctAnswer": "False"
+		},
+		{
+			"id": 52,
+			"category": "True/False",
+			"question": "Water boils at 100 degrees Celsius at normal pressure.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		},
+		{
+			"id": 53,
+			"category": "True/False",
+			"question": "HTML is used to style web pages.",
+			"choices": ["True", "False"],
+			"correctAnswer": "False"
+		},
+		{
+			"id": 54,
+			"category": "True/False",
+			"question": "Vienna is the capital of Austria.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		},
+		{
+			"id": 55,
+			"category": "True/False",
+			"question": "A triangle has four sides.",
+			"choices": ["True", "False"],
+			"correctAnswer": "False"
+		},
+		{
+			"id": 56,
+			"category": "True/False",
+			"question": "The Pacific Ocean is larger than the Atlantic Ocean.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		},
+		{
+			"id": 57,
+			"category": "True/False",
+			"question": "Shakespeare wrote 'Romeo and Juliet'.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		},
+		{
+			"id": 58,
+			"category": "True/False",
+			"question": "Penguins can fly long distances.",
+			"choices": ["True", "False"],
+			"correctAnswer": "False"
+		},
+		{
+			"id": 59,
+			"category": "True/False",
+			"question": "The chemical symbol for silver is Ag.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		},
+		{
+			"id": 60,
+			"category": "True/False",
+			"question": "CSS stands for Cascading Style Sheets.",
+			"choices": ["True", "False"],
+			"correctAnswer": "True"
+		}
 	]
 }
