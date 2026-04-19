@@ -865,7 +865,7 @@ body > #knowledge {
   margin: 0 0 1rem;
   border: 1px solid #ffffff38;
   border-radius: 12px;
-  background: rgb(211, 115, 197);;
+  background: rgb(211, 115, 197);
   color: #f6ecff;
   padding: 0.82rem 0.9rem;
   font-family: basicFont;
@@ -1026,6 +1026,30 @@ body > #knowledge {
   margin: 0.2rem 0 0;
   font-size: 0.8rem;
   color: #f7ecff;
+}
+
+.quiz-results-screen {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #2c1844;
+  border: 1px solid #ffffff33;
+  border-radius: 18px;
+  padding: 1.4rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.quiz-results-score {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.quiz-restart-btn {
+  margin-top: 1rem;
+  padding: 0.7rem 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
