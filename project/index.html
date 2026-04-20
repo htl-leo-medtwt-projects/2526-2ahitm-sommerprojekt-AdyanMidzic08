@@ -43,6 +43,27 @@
       <img class="icon i12" src="./Images/Icons/Icon6.png" alt="" />
     </div>
 
+    <div id="navigationMenuBtn"></div>
+
+    <div id="nameSetupScreen" class="setup-screen">
+      <div class="setup-card">
+        <img src="./Images/Logo.png" alt="FactForge Logo" class="setup-logo" />
+        <h1 class="setup-title">Welcome to FactForge</h1>
+        <p class="setup-subtitle">Enter your name to get started</p>
+        <input
+          id="setupNameInput"
+          class="setup-input"
+          type="text"
+          placeholder="Enter your name..."
+          maxlength="30"
+        />
+        <div id="setupError" class="setup-error"></div>
+        <button id="setupStartBtn" class="setup-button" type="button">
+          Start Game
+        </button>
+      </div>
+    </div>
+
     <div id="navigation">
       <a href="./index.html">
         <img src="./Images/Logo.png" alt="Logo" class="logo" />
@@ -144,29 +165,43 @@
     <div id="UserPage">
       <div id="info-box">
         <div class="userpage-head">
-          <h2>Player Profile</h2>
+          <h2 id="profileDisplayName">Player: -</h2>
           <p>Your personal FactForge area</p>
         </div>
 
         <div class="profile-main-grid">
           <article class="profile-card profile-card-streak">
             <h3>Daily Streak</h3>
-            <p class="profile-big">12 days</p>
+            <p id="profileDisplayStreak" class="profile-big">0 days</p>
             <div class="profile-meter">
-              <div class="profile-meter-fill" style="width: 60%"></div>
+              <div
+                id="profileStreakMeterFill"
+                class="profile-meter-fill"
+                style="width: 0%"
+              ></div>
             </div>
+          </article>
+
+          <article class="profile-card profile-card-points">
+            <h3>Points</h3>
+            <p id="profileDisplayPoints" class="profile-big">0</p>
+            <p class="profile-sub">Total collected points</p>
           </article>
 
           <article class="profile-card profile-card-coins">
             <h3>Coins</h3>
-            <p class="profile-big">1.480</p>
-            <p class="profile-sub">Next goal: 2,000</p>
+            <p id="profileDisplayCoins" class="profile-big">0</p>
+            <p id="profileDisplayCoinsGoal" class="profile-sub">
+              Next goal: 100
+            </p>
           </article>
 
           <article class="profile-card profile-card-time">
             <h3>Playtime</h3>
-            <p class="profile-big">37h 24m</p>
-            <p class="profile-sub">this week: 5h 10m</p>
+            <p id="profileDisplayPlaytime" class="profile-big">0h 0m</p>
+            <p id="profileDisplayWeeklyPlaytime" class="profile-sub">
+              this week: 0h 0m
+            </p>
           </article>
         </div>
 
@@ -176,7 +211,7 @@
         >
           <div class="achievements-title-row">
             <h3 id="achievements-title">Achievements</h3>
-            <span>7 of 12 unlocked</span>
+            <span id="profileAchievementsProgress">0 of 12 unlocked</span>
           </div>
 
           <div class="achievements-grid">

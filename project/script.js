@@ -47,7 +47,62 @@ function runLoading(onDone) {
 }
 //End KI
 
+function getStoredProfileName() {
+  let rawProfile = localStorage.getItem("factforgeProfile");
+  let profile = JSON.parse(rawProfile);
+  let name = profile.name;
+  return name;
+}
+
+function renderProfileName() {
+  let nameElement = document.getElementById("profileDisplayName");
+  nameElement.textContent = "Player: " + getStoredProfileName();
+}
+
+function initializeSetupScreen() {
+  let setupScreen = document.getElementById("nameSetupScreen");
+  let setupInput = document.getElementById("setupNameInput");
+  let setupBtn = document.getElementById("setupStartBtn");
+
+  let profileData = localStorage.getItem("factforgeProfile");
+
+  if (profileData) {
+    setupScreen.classList.add("hidden");
+  } else {
+    setupScreen.classList.remove("hidden");
+  }
+
+  setupBtn.addEventListener("click", function () {
+    let name = setupInput.value.trim();
+    let errorElement = document.getElementById("setupError");
+
+    if (name.length > 0) {
+      const profile = {
+        name: name,
+        streak: 0,
+        coins: 0,
+        playtime: 0,
+        achievements: [],
+      };
+
+      localStorage.setItem("factforgeProfile", JSON.stringify(profile));
+      setupScreen.classList.add("hidden");
+      errorElement.classList.remove("show");
+      renderProfileName();
+    } else {
+      errorElement.innerHTML = "Name must be at least 1 character!";
+      errorElement.classList.add("show");
+
+      setTimeout(function () {
+        errorElement.classList.remove("show");
+      }, 2000);
+    }
+  });
+}
+
 window.addEventListener("load", function () {
+  initializeSetupScreen();
+  renderProfileName();
   runLoading();
 });
 
@@ -84,6 +139,7 @@ userButton.addEventListener("click", function (event) {
   event.preventDefault();
 
   runLoading(function () {
+    renderProfileName();
     homeSection.style.display = "none";
     knowledgeSection.style.display = "none";
     userPage.style.display = "flex";
@@ -107,6 +163,17 @@ homeLink.addEventListener("click", function (event) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+/*
+ ************************************************
+ ***************** localStorage *****************
+ ************************************************
+ */
+
+/*
+ ************************************************
+ ***************** PLAYER ***********************
+ ************************************************
+ */
 
 class Player {
   constructor(name) {
