@@ -54,10 +54,30 @@ function getStoredProfileName() {
   return name;
 }
 
+function getStoredPoints() {
+  let rawProfile = localStorage.getItem("factforgeProfile");
+  let profile = JSON.parse(rawProfile);
+  let points = profile.points;
+  return points;
+}
+
+function getStoredCoins() {
+  let rawProfile = localStorage.getItem("factforgeProfile");
+  let profile = JSON.parse(rawProfile);
+  let coins = profile.coins;
+  return coins;
+}
+
 function renderProfileName() {
   let nameElement = document.getElementById("profileDisplayName");
-  nameElement.textContent = "Player: " + getStoredProfileName();
+  let pointsElement = document.querySelector(".profile-sub");
+  let coinsElement = document.getElementById("profileDisplayCoinsGoal");
+  nameElement.innerHTML = "Player: " + getStoredProfileName();
+  pointsElement.innerHTML = "Points: " + getStoredPoints();
+  coinsElement.innerHTML = "Coins: " + getStoredCoins();
 }
+
+
 
 function initializeSetupScreen() {
   let setupScreen = document.getElementById("nameSetupScreen");
@@ -81,6 +101,7 @@ function initializeSetupScreen() {
         name: name,
         streak: 0,
         coins: 0,
+        points: 0,  
         playtime: 0,
         achievements: [],
       };
@@ -383,6 +404,13 @@ function applyScore(isCorrect) {
     let coins = 5 + quiz.streak;
     quiz.score += points;
     quiz.coins += coins;
+
+    let newDataCoins = localStorage.getItem("factforgeProfile");
+    let profile = JSON.parse(newDataCoins);
+    profile.coins = parseInt(profile.coins) + coins;
+    profile.points = parseInt(profile.points) + points;
+    localStorage.setItem("factforgeProfile", JSON.stringify(profile));
+    renderProfileName();
   } else {
     quiz.streak = 0;
   }
