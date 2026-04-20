@@ -132,6 +132,14 @@ body > #knowledge {
   z-index: 0;
 }
 
+body.knowledge-mode-active .manual-icons {
+  display: none;
+}
+
+body.knowledge-navigation-hidden #navigation {
+  display: none;
+}
+
 #navigation {
   background-color: #5d4dc7;
   width: 100%;
@@ -1029,14 +1037,11 @@ body > #knowledge {
 }
 
 .quiz-results-screen {
-  max-width: 860px;
+  width: min(1200px, 100%);
   margin: 0 auto;
-  background: #2c1844;
-  border: 1px solid #ffffff33;
   border-radius: 18px;
-  padding: 1.4rem;
   color: #ffffff;
-  text-align: center;
+  overflow: hidden;
 }
 
 .quiz-results-score {
@@ -1044,12 +1049,87 @@ body > #knowledge {
   margin: 0.5rem 0;
 }
 
+.quiz-results-container {
+  padding: 2.4rem 1rem 1.7rem;
+}
+
+.quiz-results-container .footer-section {
+  min-height: 220px;
+  gap: 0.75rem;
+}
+
+.quiz-results-container .footer-section p {
+  margin: 0;
+}
+
+.quiz-results-container .footer-section h3 {
+  margin-bottom: 0.25rem;
+}
+
+.quiz-results-container .quiz-results-summary,
+.quiz-results-container .quiz-results-action {
+  background: rgba(53, 26, 76, 0.26);
+}
+
+.quiz-results-container .quiz-results-stats {
+  background: rgba(71, 38, 101, 0.26);
+}
+
+.quiz-results-container .quiz-results-action {
+  align-items: flex-start;
+}
+
+.quiz-results-container .quiz-results-action p {
+  max-width: 24ch;
+}
+
+.quiz-results-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: auto;
+}
+
 .quiz-restart-btn {
-  margin-top: 1rem;
-  padding: 0.7rem 1.1rem;
-  border: none;
-  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-family: headlines;
+  font-size: 1rem;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.quiz-restart-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.quiz-home-btn {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(44, 24, 68, 0.35);
+  color: #ffffff;
+  font-family: headlines;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.quiz-home-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(44, 24, 68, 0.5);
+  border-color: rgba(255, 255, 255, 0.32);
 }
 
 @media (max-width: 768px) {

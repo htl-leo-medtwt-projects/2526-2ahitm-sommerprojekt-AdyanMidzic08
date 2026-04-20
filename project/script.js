@@ -64,7 +64,17 @@ let tutorialSection = document.getElementById("tutorial");
 knowledgeSection.style.display = "none";
 userPage.style.display = "none";
 
+function setKnowledgeModeActive(isActive) {
+  document.body.classList.toggle("knowledge-mode-active", isActive);
+}
+
+function setNavigationVisible(isVisible) {
+  document.body.classList.toggle("knowledge-navigation-hidden", !isVisible);
+}
+
 function showHomePage() {
+  setKnowledgeModeActive(false);
+  setNavigationVisible(true);
   homeSection.style.display = "";
   knowledgeSection.style.display = "none";
   userPage.style.display = "none";
@@ -597,12 +607,14 @@ function showEndScreen() {
   }
 
   knowledgeSection.innerHTML =
-    '<div class="quiz-results-screen">' +
-    "<h2>Quiz Complete</h2>" +
-    '<p class="quiz-results-score">Score: ' +
+    '<div class="quiz-results-screen footer">' +
+    '<div class="footer-container quiz-results-container">' +
+    '<section class="footer-section quiz-results-summary">' +
+    "<h3>Quiz Complete</h3>" +
+    '<p class="quiz-results-score">' +
     quiz.score +
-    "</p>" +
-    "<p>Correct: " +
+    " points</p>" +
+    "<p>Correct answers: " +
     quiz.correctAnswers +
     " / " +
     total +
@@ -610,13 +622,26 @@ function showEndScreen() {
     "<p>Accuracy: " +
     accuracy +
     "%</p>" +
-    "<p>Coins: " +
+    "</section>" +
+    '<section class="footer-section quiz-results-stats">' +
+    "<h3>Stats</h3>" +
+    "<p>Coins collected: " +
     quiz.coins +
     "</p>" +
-    "<p>Best Streak: " +
+    "<p>Best streak: " +
     quiz.bestStreak +
     "</p>" +
+    "</section>" +
+    '<section class="footer-section quiz-results-action">' +
+    "<h3>Play Again</h3>" +
+    "<p>Start another round with a fresh set of questions.</p>" +
+    '<div class="quiz-results-buttons">' +
     '<button id="quizRestartBtn" class="quiz-restart-btn">Play Again</button>' +
+    '<button id="quizHomeBtn" class="quiz-home-btn" type="button">Home</button>' +
+    "</div>" +
+    "</section>" +
+    "</div>" +
+    '<div class="footer-bottom">FactForge is ready for another round.</div>' +
     "</div>";
 
   let restart = document.getElementById("quizRestartBtn");
@@ -624,6 +649,14 @@ function showEndScreen() {
     restart.onclick = function () {
       knowledgeSection.innerHTML = knowledgeTemplate;
       startKnowledgeQuiz();
+    };
+  }
+
+  let homeButton = document.getElementById("quizHomeBtn");
+  if (homeButton) {
+    homeButton.onclick = function () {
+      showHomePage();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
   }
 }
@@ -657,6 +690,8 @@ async function startKnowledgeQuiz() {
 
 knowledgeModeButton.addEventListener("click", function () {
   runLoading(function () {
+    setKnowledgeModeActive(true);
+    setNavigationVisible(false);
     homeSection.style.display = "none";
     userPage.style.display = "none";
     knowledgeSection.style.display = "";
