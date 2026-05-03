@@ -1,5 +1,13 @@
 /*
  ************************************************
+ ***************** IMPORTS **********************
+ ************************************************
+ */
+
+import { knowledgeData } from "./data/knowledge.js";
+
+/*
+ ************************************************
  ***************** NAVIGATION *******************
  ************************************************
  */
@@ -77,8 +85,6 @@ function renderProfileName() {
   coinsElement.innerHTML = "Coins: " + getStoredCoins();
 }
 
-
-
 function initializeSetupScreen() {
   let setupScreen = document.getElementById("nameSetupScreen");
   let setupInput = document.getElementById("setupNameInput");
@@ -101,7 +107,7 @@ function initializeSetupScreen() {
         name: name,
         streak: 0,
         coins: 0,
-        points: 0,  
+        points: 0,
         playtime: 0,
         achievements: [],
       };
@@ -756,12 +762,10 @@ function showEndScreen() {
   }
 }
 
-// Laedt Fragen aus der JSON-Datei und waehlt 10 aus.
+// Laedt Fragen aus der Knowledge-Datenbank und waehlt 10 aus.
 async function loadKnowledgeQuestions() {
   try {
-    let response = await fetch("./data/knowledge.json");
-    let data = await response.json();
-    let all = data.questions || [];
+    let all = knowledgeData.questions || [];
     shuffleArray(all);
     quiz.questions = all.slice(0, 10);
   } catch (error) {
