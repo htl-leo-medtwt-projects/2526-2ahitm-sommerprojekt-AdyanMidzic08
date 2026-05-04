@@ -76,13 +76,51 @@ function getStoredCoins() {
   return coins;
 }
 
+function getStoredStreak() {
+  let rawProfile = localStorage.getItem("factforgeProfile");
+  let profile = JSON.parse(rawProfile);
+  let streak = profile.streak;
+  return streak;
+}
+
+function getStoredPlaytime() {
+  let rawProfile = localStorage.getItem("factforgeProfile");
+  let profile = JSON.parse(rawProfile);
+  let playtime = profile.playtime;
+  return playtime;
+}
+
 function renderProfileName() {
   let nameElement = document.getElementById("profileDisplayName");
-  let pointsElement = document.querySelector(".profile-sub");
-  let coinsElement = document.getElementById("profileDisplayCoinsGoal");
+  let streakElement = document.getElementById("profileDisplayStreak");
+  let streakMeterFill = document.getElementById("profileStreakMeterFill");
+  let pointsElement = document.getElementById("profileDisplayPoints");
+  let coinsElement = document.getElementById("profileDisplayCoins");
+  let coinsGoalElement = document.getElementById("profileDisplayCoinsGoal");
+  let playtimeElement = document.getElementById("profileDisplayPlaytime");
+
   nameElement.innerHTML = "Player: " + getStoredProfileName();
-  pointsElement.innerHTML = "Points: " + getStoredPoints();
-  coinsElement.innerHTML = "Coins: " + getStoredCoins();
+
+  let streak = getStoredStreak();
+  streakElement.innerHTML = streak + " days";
+  let streakPercent = (streak / 7) * 100;
+  if (streakPercent > 100) {
+    streakPercent = 100;
+  }
+  streakMeterFill.style.width = streakPercent + "%";
+
+  let points = getStoredPoints();
+  pointsElement.innerHTML = points;
+
+  let coins = getStoredCoins();
+  coinsElement.innerHTML = coins;
+  let nextGoal = coins + 100;
+  coinsGoalElement.innerHTML = "Next goal: " + nextGoal;
+
+  let playtime = getStoredPlaytime();
+  let hours = Math.floor(playtime / 3600);
+  let minutes = Math.floor((playtime % 3600) / 60);
+  playtimeElement.innerHTML = hours + "h " + minutes + "m";
 }
 
 function initializeSetupScreen() {
@@ -180,6 +218,7 @@ userButton.addEventListener("click", function (event) {
 
   runLoading(function () {
     renderProfileName();
+    if (typeof renderAchievements === "function") renderAchievements();
     homeSection.style.display = "none";
     knowledgeSection.style.display = "none";
     userPage.style.display = "flex";
@@ -430,6 +469,7 @@ function applyScore(isCorrect) {
     profile.points = parseInt(profile.points) + points;
     localStorage.setItem("factforgeProfile", JSON.stringify(profile));
     renderProfileName();
+    if (typeof renderAchievements === "function") renderAchievements();
   } else {
     quiz.streak = 0;
   }

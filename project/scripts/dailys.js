@@ -248,6 +248,7 @@ function applyScore(isCorrect) {
     profile.points = parseInt(profile.points) + points;
     profile.streak = parseInt(profile.streak || 0) + 1;
     localStorage.setItem("factforgeProfile", JSON.stringify(profile));
+    if (typeof renderAchievements === 'function') renderAchievements();
   } else {
     dailyQuiz.streak = 0;
   }
