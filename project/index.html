@@ -11,6 +11,7 @@
     <script src="./node_modules/aos/dist/aos.js"></script>
     <script type="module" src="./scripts/animate.js" defer></script>
     <script type="module" src="./script.js" defer></script>
+    <script type="module" src="./scripts/dailys.js" defer></script>
   </head>
   <body>
     <div id="loadingScreen" aria-live="polite" aria-label="Loading screen">
@@ -77,7 +78,7 @@
       <div class="nav-links">
         <a href="./index.html">Home</a>
         <a id="user-btn" href="#">User</a>
-        <a href="#">Dailys</a>
+        <a id="daily-nav-btn" href="#" class="daily-nav-link">Dailys</a>
         <a href="#tutorial">Tutorial</a>
       </div>
     </div>
@@ -255,7 +256,12 @@
     </div>
 
     <section id="knowledge" aria-labelledby="knowledge-title">
-      <div class="quiz-mode-switch" role="group" aria-label="Quiz mode">
+      <div
+        class="quiz-mode-switch"
+        role="group"
+        aria-label="Quiz mode"
+        id="modeSwitch"
+      >
         <button
           class="quiz-mode-btn is-active"
           type="button"

@@ -476,6 +476,16 @@ body.knowledge-navigation-hidden #navigation {
   background: linear-gradient(135deg, #5d4dc7 20%, #ffc0cb 100%);
 }
 
+.mode-btn-dailys.daily-locked {
+  background: linear-gradient(135deg, #9e9e9e 20%, #d0d0d0 100%);
+  filter: grayscale(1) brightness(0.95);
+  cursor: not-allowed;
+}
+
+.mode-btn-dailys:disabled {
+  pointer-events: none;
+}
+
 .mode-btn:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 20px 38px rgba(25, 10, 36, 0.32);
@@ -648,6 +658,11 @@ body.knowledge-navigation-hidden #navigation {
   text-decoration: underline;
   font-size: 1.2rem;
   white-space: nowrap;
+}
+
+.nav-links a.daily-locked {
+  color: #888;
+  text-decoration: none;
 }
 
 .avatar {

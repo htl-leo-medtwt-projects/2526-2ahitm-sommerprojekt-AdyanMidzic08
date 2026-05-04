@@ -4,7 +4,7 @@
  ************************************************
  */
 
-import { knowledgeData } from "./data/knowledge.js";
+import { knowledgeData } from "./data/knowledge-data.js";
 
 /*
  ************************************************
@@ -115,7 +115,10 @@ function initializeSetupScreen() {
       localStorage.setItem("factforgeProfile", JSON.stringify(profile));
       setupScreen.classList.add("hidden");
       errorElement.classList.remove("show");
-      renderProfileName();
+
+      runLoading(function () {
+        renderProfileName();
+      });
     } else {
       errorElement.innerHTML = "Name must be at least 1 character!";
       errorElement.classList.add("show");
@@ -130,7 +133,10 @@ function initializeSetupScreen() {
 window.addEventListener("load", function () {
   initializeSetupScreen();
   renderProfileName();
-  runLoading();
+
+  if (localStorage.getItem("factforgeProfile")) {
+    runLoading();
+  }
 });
 
 let knowledgeModeButton = document.querySelector(".mode-btn-knowledge");
@@ -142,6 +148,7 @@ let userPage = document.getElementById("UserPage");
 let tutorialLink = document.querySelector('.nav-links a[href="#tutorial"]');
 let homeLink = document.querySelector('.nav-links a[href="./index.html"]');
 let tutorialSection = document.getElementById("tutorial");
+let modeSwitch = document.getElementById("modeSwitch");
 
 knowledgeSection.style.display = "none";
 userPage.style.display = "none";
@@ -152,6 +159,12 @@ function setKnowledgeModeActive(isActive) {
 
 function setNavigationVisible(isVisible) {
   document.body.classList.toggle("knowledge-navigation-hidden", !isVisible);
+}
+
+function setModeSwitchVisible(isVisible) {
+  if (modeSwitch) {
+    modeSwitch.style.display = isVisible ? "" : "none";
+  }
 }
 
 function showHomePage() {
@@ -791,6 +804,7 @@ knowledgeModeButton.addEventListener("click", function () {
   runLoading(function () {
     setKnowledgeModeActive(true);
     setNavigationVisible(false);
+    setModeSwitchVisible(true);
     homeSection.style.display = "none";
     userPage.style.display = "none";
     knowledgeSection.style.display = "";
