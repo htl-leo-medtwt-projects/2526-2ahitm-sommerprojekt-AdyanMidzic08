@@ -13,6 +13,7 @@
     <script type="module" src="./script.js" defer></script>
     <script type="module" src="./scripts/dailys.js" defer></script>
     <script type="module" src="./scripts/achievements.js" defer></script>
+    <script type="module" src="./scripts/shop.js" defer></script>
   </head>
   <body>
     <div id="loadingScreen" aria-live="polite" aria-label="Loading screen">
@@ -80,6 +81,7 @@
         <a href="./index.html">Home</a>
         <a id="user-btn" href="#">User</a>
         <a id="daily-nav-btn" href="#" class="daily-nav-link">Dailys</a>
+        <a id="shop-nav-btn" href="#shop">Shop</a>
         <a href="#tutorial">Tutorial</a>
       </div>
     </div>
@@ -359,6 +361,63 @@
         </div>
         <div class="quiz-simple-progress">
           <div class="quiz-simple-progress-bar"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" class="shop" aria-labelledby="shop-title">
+      <div class="shop-container">
+        <h2 id="shop-title" class="shop-title">Shop</h2>
+        <p class="shop-subtitle">Boost your stats with exclusive items</p>
+
+        <div class="shop-balance">
+          <div class="balance-item">
+            <span>Coins:</span>
+            <span id="shopCoinsDisplay" class="balance-value">0</span>
+          </div>
+        </div>
+
+        <div class="shop-items">
+          <div class="shop-item" data-item="xp-boost">
+            <div class="shop-item-icon">
+              <img src="./Images/Icons/Icon1.png" alt="XP Boost" />
+            </div>
+            <h3>XP Boost</h3>
+            <p class="shop-item-description">+2x XP for the next 5 quizzes</p>
+            <p class="shop-item-price">
+              <span class="price-value">50</span>
+              <span class="price-currency">Coins</span>
+            </p>
+            <button class="shop-buy-btn" type="button">Buy</button>
+          </div>
+
+          <div class="shop-item" data-item="coin-boost">
+            <div class="shop-item-icon">
+              <img src="./Images/Icons/Icon2.png" alt="Coin Boost" />
+            </div>
+            <h3>Coin Boost</h3>
+            <p class="shop-item-description">
+              +2x Coins for the next 5 quizzes
+            </p>
+            <p class="shop-item-price">
+              <span class="price-value">50</span>
+              <span class="price-currency">Coins</span>
+            </p>
+            <button class="shop-buy-btn" type="button">Buy</button>
+          </div>
+
+          <div class="shop-item" data-item="streak-shield">
+            <div class="shop-item-icon">
+              <img src="./Images/Icons/Icon3.png" alt="Streak Shield" />
+            </div>
+            <h3>Streak Shield</h3>
+            <p class="shop-item-description">Protect your daily streak once</p>
+            <p class="shop-item-price">
+              <span class="price-value">100</span>
+              <span class="price-currency">Coins</span>
+            </p>
+            <button class="shop-buy-btn" type="button">Buy</button>
+          </div>
         </div>
       </div>
     </section>

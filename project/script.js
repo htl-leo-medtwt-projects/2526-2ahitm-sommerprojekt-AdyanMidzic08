@@ -5,6 +5,7 @@
  */
 
 import { knowledgeData } from "./data/knowledge-data.js";
+import { openShop, updateShopDisplay } from "./scripts/shop.js";
 
 /*
  ************************************************
@@ -183,6 +184,8 @@ let knowledgeSection = document.getElementById("knowledge");
 let navigationLinks = document.querySelector(".nav-links");
 let userButton = document.getElementById("user-btn");
 let userPage = document.getElementById("UserPage");
+let shopButton = document.getElementById("shop-nav-btn");
+let shopSection = document.getElementById("shop");
 let tutorialLink = document.querySelector('.nav-links a[href="#tutorial"]');
 let homeLink = document.querySelector('.nav-links a[href="./index.html"]');
 let tutorialSection = document.getElementById("tutorial");
@@ -190,6 +193,7 @@ let modeSwitch = document.getElementById("modeSwitch");
 
 knowledgeSection.style.display = "none";
 userPage.style.display = "none";
+shopSection.style.display = "none";
 
 function setKnowledgeModeActive(isActive) {
   document.body.classList.toggle("knowledge-mode-active", isActive);
@@ -211,6 +215,7 @@ function showHomePage() {
   homeSection.style.display = "";
   knowledgeSection.style.display = "none";
   userPage.style.display = "none";
+  shopSection.style.display = "none";
 }
 
 userButton.addEventListener("click", function (event) {
@@ -221,7 +226,21 @@ userButton.addEventListener("click", function (event) {
     if (typeof renderAchievements === "function") renderAchievements();
     homeSection.style.display = "none";
     knowledgeSection.style.display = "none";
+    shopSection.style.display = "none";
     userPage.style.display = "flex";
+  });
+});
+
+shopButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  runLoading(function () {
+    homeSection.style.display = "none";
+    knowledgeSection.style.display = "none";
+    userPage.style.display = "none";
+    shopSection.style.display = "block";
+    updateShopDisplay();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
 
