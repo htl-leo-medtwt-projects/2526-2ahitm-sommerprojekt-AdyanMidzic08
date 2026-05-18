@@ -7,6 +7,20 @@
 import { knowledgeData } from "./data/knowledge-data.js";
 import { openShop, updateShopDisplay } from "./scripts/shop.js";
 
+window.playSound = function (soundType) {
+  const sounds = {
+    mouseClick: "./Audio/MouseClick.mp3",
+    victory: "./Audio/Victory.mp3",
+    losing: "./Audio/Losing.mp3",
+    loading: "./Audio/LoadingEffect.mp3",
+  };
+
+  if (sounds[soundType]) {
+    let audio = new Audio(sounds[soundType]);
+    audio.play().catch(() => {});
+  }
+}
+
 /*
  ************************************************
  ***************** NAVIGATION *******************
@@ -22,6 +36,7 @@ let isLoading = false;
 function runLoading(onDone) {
   if (loadingScreen && loadingFill && loadingPercent && !isLoading) {
     isLoading = true;
+    playSound("loading");
     loadingScreen.classList.remove("is-hidden");
     loadingFill.style.width = "0%";
     loadingPercent.textContent = "0%";
@@ -47,7 +62,7 @@ function runLoading(onDone) {
           onDone();
         }
       }
-    }, 20);
+    }, 10);
   } else {
     if (typeof onDone === "function") {
       onDone();
@@ -261,6 +276,14 @@ homeLink.addEventListener("click", function (event) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+
+document.addEventListener("click", function (event) {
+  const button = event.target.closest("button");
+  if (button) {
+    playSound("mouseClick");
+  }
+});
+
 /*
  ************************************************
  ***************** localStorage *****************
@@ -514,6 +537,7 @@ function answerDone(delay) {
 
 // Rendert den Multiple-Choice-Modus und verarbeitet Klicks.
 function renderMultipleChoice(question, card) {
+  window.playSound("mouseClick");
   let answers = card.querySelector(".quiz-simple-answers");
   if (answers) {
     let choices = question.choices.slice();
@@ -666,6 +690,7 @@ function renderTrueFalse(question, card) {
 
 // Rendert den Hint-Modus mit zwei möglichen Antworten.
 function renderHintMode(question, card) {
+  window.playSound("mouseClick");
   let hint = card.querySelector(".quiz-hint-box");
   let answers = card.querySelector(".quiz-simple-answers");
 
@@ -777,6 +802,12 @@ function showEndScreen() {
   let accuracy = 0;
   if (total > 0) {
     accuracy = Math.round((quiz.correctAnswers / total) * 100);
+  }
+
+  if (accuracy >= 50) {
+    window.playSound("victory");
+  } else {
+    window.playSound("losing");
   }
 
   knowledgeSection.innerHTML =

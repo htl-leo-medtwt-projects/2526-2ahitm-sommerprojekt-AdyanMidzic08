@@ -304,6 +304,7 @@ function renderMultipleChoice(question, card) {
       let div = allAnswers[i];
 
       div.onclick = function () {
+        window.playSound("mouseClick");
         lockClickAnswers(card);
         let choice = div.textContent;
         let isCorrect = choice === question.correctAnswer;
@@ -400,6 +401,12 @@ function showDailyEndScreen() {
   let accuracy = 0;
   if (total > 0) {
     accuracy = Math.round((dailyQuiz.correctAnswers / total) * 100);
+  }
+
+  if (accuracy >= 50) {
+    window.playSound("victory");
+  } else {
+    window.playSound("losing");
   }
 
   knowledgeSection.innerHTML = `
