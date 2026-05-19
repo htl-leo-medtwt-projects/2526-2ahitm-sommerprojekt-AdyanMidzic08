@@ -811,41 +811,51 @@ function showEndScreen() {
   }
 
   knowledgeSection.innerHTML =
-    '<div class="quiz-results-screen footer">' +
-    '<div class="footer-container quiz-results-container">' +
-    '<section class="footer-section quiz-results-summary">' +
-    "<h3>Quiz Complete</h3>" +
-    '<p class="quiz-results-score">' +
+    '<div id="info-box">' +
+    '<div class="quiz-results-screen">' +
+    '<div class="userpage-head">' +
+    "<h2>Quiz Complete</h2>" +
+    "<p>Check your results below</p>" +
+    "</div>" +
+    '<div class="profile-main-grid">' +
+    '<article class="profile-card profile-card-score">' +
+    "<h3>Total Score</h3>" +
+    '<p class="profile-big">' +
     quiz.score +
-    " points</p>" +
-    "<p>Correct answers: " +
+    "</p>" +
+    '<p class="profile-sub">points earned</p>' +
+    "</article>" +
+    '<article class="profile-card profile-card-accuracy">' +
+    "<h3>Accuracy</h3>" +
+    '<p class="profile-big">' +
+    accuracy +
+    "%</p>" +
+    '<p class="profile-sub">' +
     quiz.correctAnswers +
     " / " +
     total +
-    "</p>" +
-    "<p>Accuracy: " +
-    accuracy +
-    "%</p>" +
-    "</section>" +
-    '<section class="footer-section quiz-results-stats">' +
-    "<h3>Stats</h3>" +
-    "<p>Coins collected: " +
+    " correct</p>" +
+    "</article>" +
+    '<article class="profile-card profile-card-coins">' +
+    "<h3>Coins Collected</h3>" +
+    '<p class="profile-big">' +
     quiz.coins +
     "</p>" +
-    "<p>Best streak: " +
+    '<p class="profile-sub">from this quiz</p>' +
+    "</article>" +
+    '<article class="profile-card profile-card-streak">' +
+    "<h3>Best Streak</h3>" +
+    '<p class="profile-big">' +
     quiz.bestStreak +
     "</p>" +
-    "</section>" +
-    '<section class="footer-section quiz-results-action">' +
-    "<h3>Play Again</h3>" +
-    "<p>Start another round with a fresh set of questions.</p>" +
-    '<div class="quiz-results-buttons">' +
+    '<p class="profile-sub">consecutive correct</p>' +
+    "</article>" +
+    "</div>" +
+    '<div class="quiz-results-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">' +
     '<button id="quizRestartBtn" class="quiz-restart-btn">Play Again</button>' +
     '<button id="quizHomeBtn" class="quiz-home-btn" type="button">Home</button>' +
     "</div>" +
-    "</section>" +
     "</div>" +
-    '<div class="footer-bottom">FactForge is ready for another round.</div>' +
     "</div>";
 
   let restart = document.getElementById("quizRestartBtn");
