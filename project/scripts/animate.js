@@ -83,11 +83,35 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
   // Hilfe von Ki um die Animation erst nach dem Laden zu starten und nicht gleichzeitig mit dem Ladebildschirm
   let loadingScreen = document.getElementById("loadingScreen");
-  if (!loadingScreen || loadingScreen.classList.contains("is-hidden")) {
-    runHeroAnimation();
+  const isFirstVisit = localStorage.getItem("isFirstVisit");
+  const isReturningUser =
+    localStorage.getItem("factforgeProfile") && isFirstVisit !== "true";
+
+  if (!isReturningUser) {
+    if (!loadingScreen || loadingScreen.classList.contains("is-hidden")) {
+      runHeroAnimation();
+    } else {
+      window.addEventListener("factforge:loading-done", runHeroAnimation, {
+        once: true,
+      });
+    }
   } else {
-    window.addEventListener("factforge:loading-done", runHeroAnimation, {
-      once: true,
-    });
+    // Falls das Profil existiert und dies kein FirstVisit ist, Anime-Animationen ueberspringen
+    const heroBrand = document.querySelector(".hero-brand");
+    const heroLogo = document.querySelector(".hero-logo");
+    const heroTitle = document.querySelector(".hero-title");
+
+    if (heroBrand) {
+      heroBrand.style.opacity = "1";
+      heroBrand.style.transform = "none";
+    }
+    if (heroLogo) {
+      heroLogo.style.opacity = "1";
+      heroLogo.style.transform = "none";
+    }
+    if (heroTitle) {
+      heroTitle.style.opacity = "1";
+      heroTitle.style.transform = "none";
+    }
   }
 }

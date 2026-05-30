@@ -19,7 +19,7 @@ window.playSound = function (soundType) {
     let audio = new Audio(sounds[soundType]);
     audio.play().catch(() => {});
   }
-}
+};
 
 /*
  ************************************************
@@ -73,37 +73,37 @@ function runLoading(onDone) {
 
 function getStoredProfileName() {
   let rawProfile = localStorage.getItem("factforgeProfile");
+  if (!rawProfile) return "-";
   let profile = JSON.parse(rawProfile);
-  let name = profile.name;
-  return name;
+  return profile.name || "-";
 }
 
 function getStoredPoints() {
   let rawProfile = localStorage.getItem("factforgeProfile");
+  if (!rawProfile) return 0;
   let profile = JSON.parse(rawProfile);
-  let points = profile.points;
-  return points;
+  return profile.points || 0;
 }
 
 function getStoredCoins() {
   let rawProfile = localStorage.getItem("factforgeProfile");
+  if (!rawProfile) return 0;
   let profile = JSON.parse(rawProfile);
-  let coins = profile.coins;
-  return coins;
+  return profile.coins || 0;
 }
 
 function getStoredStreak() {
   let rawProfile = localStorage.getItem("factforgeProfile");
+  if (!rawProfile) return 0;
   let profile = JSON.parse(rawProfile);
-  let streak = profile.streak;
-  return streak;
+  return profile.streak || 0;
 }
 
 function getStoredPlaytime() {
   let rawProfile = localStorage.getItem("factforgeProfile");
+  if (!rawProfile) return 0;
   let profile = JSON.parse(rawProfile);
-  let playtime = profile.playtime;
-  return playtime;
+  return profile.playtime || 0;
 }
 
 function renderProfileName() {
@@ -167,11 +167,13 @@ function initializeSetupScreen() {
       };
 
       localStorage.setItem("factforgeProfile", JSON.stringify(profile));
+      localStorage.setItem("isFirstVisit", "true");
       setupScreen.classList.add("hidden");
       errorElement.classList.remove("show");
 
       runLoading(function () {
         renderProfileName();
+        handleFirstVisitLayout();
       });
     } else {
       errorElement.innerHTML = "Name must be at least 1 character!";
@@ -184,12 +186,40 @@ function initializeSetupScreen() {
   });
 }
 
+function handleFirstVisitLayout() {
+  let isFirstVisit = localStorage.getItem("isFirstVisit");
+
+  let hero = document.querySelector(".hero");
+  let tutorial = document.getElementById("tutorial");
+  let modeSelect = document.querySelector(".mode-select");
+  let homeSection = document.getElementById("home");
+
+  if (isFirstVisit === "true") {
+    // Erste Anmeldung: Alles anzeigen
+    if (homeSection) homeSection.style.display = "";
+    if (hero) hero.style.display = "";
+    if (tutorial) tutorial.style.display = "";
+    if (modeSelect) modeSelect.style.display = "";
+    localStorage.setItem("isFirstVisit", "false");
+  } else if (isFirstVisit === "false") {
+    // Wiederholte Anmeldung: Nur Mode Select anzeigen
+    if (homeSection) homeSection.style.display = "";
+    if (hero) hero.style.display = "none";
+    if (tutorial) tutorial.style.display = "none";
+    if (modeSelect) modeSelect.style.display = "";
+  }
+}
+
 window.addEventListener("load", function () {
   initializeSetupScreen();
   renderProfileName();
 
+  document.getElementById("home").style.display = "";
+
   if (localStorage.getItem("factforgeProfile")) {
-    runLoading();
+    runLoading(function () {
+      handleFirstVisitLayout();
+    });
   }
 });
 
@@ -228,9 +258,11 @@ function showHomePage() {
   setKnowledgeModeActive(false);
   setNavigationVisible(true);
   homeSection.style.display = "";
+  homeSection.style.visibility = "visible";
   knowledgeSection.style.display = "none";
   userPage.style.display = "none";
   shopSection.style.display = "none";
+  handleFirstVisitLayout();
 }
 
 userButton.addEventListener("click", function (event) {
@@ -283,18 +315,6 @@ document.addEventListener("click", function (event) {
     playSound("mouseClick");
   }
 });
-
-/*
- ************************************************
- ***************** localStorage *****************
- ************************************************
- */
-
-/*
- ************************************************
- ***************** PLAYER ***********************
- ************************************************
- */
 
 class Player {
   constructor(name) {
@@ -861,16 +881,23 @@ function showEndScreen() {
   let restart = document.getElementById("quizRestartBtn");
   if (restart) {
     restart.onclick = function () {
-      knowledgeSection.innerHTML = knowledgeTemplate;
-      startKnowledgeQuiz();
+      runLoading(function () {
+        startKnowledgeQuiz();
+      });
     };
   }
 
   let homeButton = document.getElementById("quizHomeBtn");
   if (homeButton) {
     homeButton.onclick = function () {
-      showHomePage();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      runLoading(function () {
+        showHomePage();
+        let hero = document.querySelector(".hero");
+        let tutorialSection = document.getElementById("tutorial");
+        if (hero) hero.style.display = "none";
+        if (tutorialSection) tutorialSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     };
   }
 }
@@ -906,9 +933,15 @@ knowledgeModeButton.addEventListener("click", function () {
     setNavigationVisible(false);
     setModeSwitchVisible(true);
     homeSection.style.display = "none";
+    homeSection.style.visibility = "hidden";
     userPage.style.display = "none";
-    knowledgeSection.style.display = "";
-    knowledgeSection.innerHTML = knowledgeTemplate;
+    shopSection.style.display = "none";
+    knowledgeSection.style.display = "flex";
+    knowledgeSection.style.visibility = "visible";
+
+    // Force browser repaint
+    void knowledgeSection.offsetWidth;
+
     startKnowledgeQuiz();
   });
 });

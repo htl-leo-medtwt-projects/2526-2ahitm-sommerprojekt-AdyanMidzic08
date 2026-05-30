@@ -136,7 +136,8 @@ body.knowledge-mode-active .manual-icons {
   display: none;
 }
 
-body.knowledge-navigation-hidden #navigation {
+body.knowledge-navigation-hidden #navigation,
+body.knowledge-navigation-hidden footer {
   display: none;
 }
 

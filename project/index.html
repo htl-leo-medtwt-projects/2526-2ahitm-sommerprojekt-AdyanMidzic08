@@ -6,9 +6,7 @@
     <title>FactForge</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./Images/Logo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./node_modules/aos/dist/aos.css" />
 
-    <script src="./node_modules/aos/dist/aos.js"></script>
     <script type="module" src="./scripts/animate.js" defer></script>
     <script type="module" src="./script.js" defer></script>
     <script type="module" src="./scripts/dailys.js" defer></script>
@@ -43,7 +41,7 @@
       <img class="icon i9" src="./Images/Icons/Icon3.png" alt="" />
       <img class="icon i10" src="./Images/Icons/Icon4.png" alt="" />
       <img class="icon i11" src="./Images/Icons/Icon5.png" alt="" />
-      <img class="icon i12" src="./Images/Icons/Icon6.png" alt="" />
+      <img class="icon i12" src="./Images/Icons/Icon6.png" alt="" />x
     </div>
 
     <div id="navigationMenuBtn"></div>
@@ -72,11 +70,6 @@
         <img src="./Images/Logo.png" alt="Logo" class="logo" />
       </a>
 
-      <div class="xp">
-        <span>#Xp</span>
-        <img src="./Images/xp-bar.png" alt="XP Bar" class="xp-bar" />
-      </div>
-
       <div class="nav-links">
         <a href="./index.html">Home</a>
         <a id="user-btn" href="#">User</a>
@@ -87,7 +80,7 @@
     </div>
 
     <div id="home">
-      <section id="home" class="hero">
+      <section class="hero">
         <div class="hero-title-row">
           <img
             class="headline-icon left"
@@ -114,28 +107,28 @@
       >
         <h2 id="tutorial-heading" class="tutorial-title">Tutorial</h2>
         <div class="tutorial-grid">
-          <div class="tutorial-box box-light" data-aos="fade-down">
+          <div class="tutorial-box box-light">
             <h3>Start a Focused Quiz</h3>
             <p>
               Pick a topic and instantly start a new round to test your
               knowledge in a structured way.
             </p>
           </div>
-          <div class="tutorial-box box-dark" data-aos="fade-down">
+          <div class="tutorial-box box-dark">
             <h3>Answer Questions Confidently</h3>
             <p>
               Answer multiple-choice questions in a short time. Every correct
               answer directly improves your progress.
             </p>
           </div>
-          <div class="tutorial-box box-dark" data-aos="fade-up">
+          <div class="tutorial-box box-dark">
             <h3>Collect XP and Progress</h3>
             <p>
               After each completed round, you collect XP and instantly see your
               current status in the progress bar.
             </p>
           </div>
-          <div class="tutorial-box box-light" data-aos="fade-up">
+          <div class="tutorial-box box-light">
             <h3>Practice Knowledge in Game</h3>
             <p>
               Repeat difficult topics regularly so you can practice your
@@ -149,7 +142,6 @@
         id="mode"
         class="mode-select"
         aria-labelledby="mode-select-heading"
-        data-aos="flip-up"
       >
         <h2 id="mode-select-heading" class="mode-select-title">
           Choose Your Mode
@@ -248,11 +240,7 @@
         </button>
       </div>
 
-      <div
-        class="quiz-simple quiz-mode is-active"
-        data-aos="zoom-in-up"
-        data-mode="multiple-choice"
-      >
+      <div class="quiz-simple quiz-mode is-active" data-mode="multiple-choice">
         <div class="quiz-simple-top">
           <p id="knowledge-title" class="quiz-count">Question 1 of 10</p>
           <p class="quiz-points">0 points</p>
@@ -500,18 +488,4 @@
       </div>
     </footer>
   </body>
-
-  <script>
-    AOS.init({
-      once: false,
-      mirror: true,
-      offset: 20,
-      anchorPlacement: "top-bottom",
-      duration: 800,
-      easing: "ease-out-cubic",
-    });
-
-    window.addEventListener("load", () => AOS.refreshHard());
-    window.addEventListener("resize", () => AOS.refresh());
-  </script>
 </html>

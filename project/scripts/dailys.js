@@ -99,8 +99,32 @@ function showHomePage() {
   if (modeSwitch) {
     modeSwitch.style.display = "";
   }
+
+  // Show logic for Home sections like in handleFirstVisitLayout
+  let isFirstVisit = localStorage.getItem("isFirstVisit");
+  if (isFirstVisit !== "true" && isFirstVisit !== "false") {
+    isFirstVisit = localStorage.getItem("factforgeProfile") ? "false" : "true";
+  }
+
+  let hero = document.querySelector(".hero");
+  let tutorial = document.getElementById("tutorial");
+  let modeSelect = document.querySelector(".mode-select");
+
   homeSection.style.display = "";
+  homeSection.style.visibility = "visible";
   knowledgeSection.style.display = "none";
+
+  if (isFirstVisit === "true") {
+    if (hero) hero.style.display = "";
+    if (tutorial) tutorial.style.display = "";
+    if (modeSelect) modeSelect.style.display = "";
+  } else {
+    // If not first visit, maybe they clicked the nav link or home button
+    // Let's make sure the hero and tutorial are visible again, since the script.js logic does this for nav links
+    if (hero) hero.style.display = "";
+    if (tutorial) tutorial.style.display = "";
+    if (modeSelect) modeSelect.style.display = "";
+  }
 }
 
 /*
@@ -237,7 +261,7 @@ function applyScore(isCorrect) {
     dailyQuiz.correctAnswers++;
     dailyQuiz.streak++;
 
-      let points = 15 + dailyQuiz.streak;
+    let points = 15 + dailyQuiz.streak;
     let coins = 10 + dailyQuiz.streak;
     dailyQuiz.score += points;
     dailyQuiz.coins += coins;
@@ -248,7 +272,7 @@ function applyScore(isCorrect) {
     profile.points = parseInt(profile.points) + points;
     profile.streak = parseInt(profile.streak || 0) + 1;
     localStorage.setItem("factforgeProfile", JSON.stringify(profile));
-    if (typeof renderAchievements === 'function') renderAchievements();
+    if (typeof renderAchievements === "function") renderAchievements();
   } else {
     dailyQuiz.streak = 0;
   }
@@ -409,37 +433,64 @@ function showDailyEndScreen() {
     window.playSound("losing");
   }
 
-  knowledgeSection.innerHTML = `
-    <div class="quiz-results-screen footer">
-      <div class="footer-container quiz-results-container">
-        <section class="footer-section quiz-results-summary">
-          <h3>Daily Challenge Complete!</h3>
-          <p class="quiz-results-score">${dailyQuiz.score} points</p>
-          <p>Correct answers: ${dailyQuiz.correctAnswers} / ${total}</p>
-          <p>Accuracy: ${accuracy}%</p>
-        </section>
-        <section class="footer-section quiz-results-stats">
-          <h3>Stats</h3>
-          <p>Coins collected: ${dailyQuiz.coins}</p>
-          <p>Streak: ${dailyQuiz.streak}</p>
-        </section>
-        <section class="footer-section quiz-results-action">
-          <h3>Come Back Tomorrow!</h3>
-          <p>Return in 24 hours for your next daily challenge.</p>
-          <div class="quiz-results-buttons">
-            <button id="dailyHomeBtn" class="quiz-home-btn" type="button">Home</button>
-          </div>
-        </section>
-      </div>
-      <div class="footer-bottom">See you tomorrow for the next daily challenge!</div>
-    </div>
-  `;
+  knowledgeSection.innerHTML =
+    '<div id="info-box">' +
+    '<div class="quiz-results-screen">' +
+    '<div class="userpage-head">' +
+    "<h2>Daily Challenge Complete!</h2>" +
+    "<p>Check your results below</p>" +
+    "</div>" +
+    '<div class="profile-main-grid">' +
+    '<article class="profile-card profile-card-score">' +
+    "<h3>Total Score</h3>" +
+    '<p class="profile-big">' +
+    dailyQuiz.score +
+    "</p>" +
+    '<p class="profile-sub">points earned</p>' +
+    "</article>" +
+    '<article class="profile-card profile-card-accuracy">' +
+    "<h3>Accuracy</h3>" +
+    '<p class="profile-big">' +
+    accuracy +
+    "%</p>" +
+    '<p class="profile-sub">' +
+    dailyQuiz.correctAnswers +
+    " / " +
+    total +
+    " correct</p>" +
+    "</article>" +
+    '<article class="profile-card profile-card-coins">' +
+    "<h3>Coins Collected</h3>" +
+    '<p class="profile-big">' +
+    dailyQuiz.coins +
+    "</p>" +
+    '<p class="profile-sub">from this attempt</p>' +
+    "</article>" +
+    '<article class="profile-card profile-card-streak">' +
+    "<h3>Best Streak</h3>" +
+    '<p class="profile-big">' +
+    dailyQuiz.streak +
+    "</p>" +
+    '<p class="profile-sub">consecutive correct</p>' +
+    "</article>" +
+    "</div>" +
+    '<div class="quiz-results-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">' +
+    '<button id="dailyHomeBtn" class="quiz-home-btn" type="button">Home</button>' +
+    "</div>" +
+    "</div>" +
+    "</div>";
 
   let homeButton = document.getElementById("dailyHomeBtn");
   if (homeButton) {
     homeButton.onclick = function () {
-      showHomePage();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      runLoading(function () {
+        showHomePage();
+        let hero = document.querySelector(".hero");
+        let tutorialSection = document.getElementById("tutorial");
+        if (hero) hero.style.display = "none";
+        if (tutorialSection) tutorialSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     };
   }
 }
@@ -448,34 +499,38 @@ function showDailyLockedScreen() {
   let timeRemaining = getTimeUntilNextDaily();
   let timeText = formatTimeRemaining(timeRemaining);
 
-  knowledgeSection.innerHTML = `
-    <div class="quiz-results-screen footer">
-      <div class="footer-container quiz-results-container">
-        <section class="footer-section quiz-results-summary">
-          <h3>Daily Challenge Locked</h3>
-          <p>You have already played today!</p>
-        </section>
-        <section class="footer-section quiz-results-stats">
-          <h3>Time Until Next Daily</h3>
-          <p id="timeCountdown" style="font-size: 1.5em; font-weight: bold;">${timeText}</p>
-        </section>
-        <section class="footer-section quiz-results-action">
-          <h3>Come Back Later</h3>
-          <p>Return when the timer reaches zero for your next challenge.</p>
-          <div class="quiz-results-buttons">
-            <button id="dailyLockedHomeBtn" class="quiz-home-btn" type="button">Home</button>
-          </div>
-        </section>
-      </div>
-      <div class="footer-bottom">Daily challenges reset every 24 hours.</div>
-    </div>
-  `;
+  knowledgeSection.innerHTML =
+    '<div id="info-box">' +
+    '<div class="quiz-results-screen">' +
+    '<div class="userpage-head">' +
+    "<h2>Daily Challenge Locked</h2>" +
+    "<p>You have already played today!</p>" +
+    "</div>" +
+    '<div class="profile-main-grid" style="display: flex; justify-content: center;">' +
+    '<article class="profile-card profile-card-time" style="max-width: 400px; width: 100%;">' +
+    "<h3>Time Until Next Daily</h3>" +
+    '<p id="timeCountdown" class="profile-big" style="margin-top: 15px;">' +
+    timeText +
+    "</p>" +
+    "</article>" +
+    "</div>" +
+    '<div class="quiz-results-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">' +
+    '<button id="dailyLockedHomeBtn" class="quiz-home-btn" type="button">Home</button>' +
+    "</div>" +
+    "</div>" +
+    "</div>";
 
   let homeButton = document.getElementById("dailyLockedHomeBtn");
   if (homeButton) {
     homeButton.onclick = function () {
-      showHomePage();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      runLoading(function () {
+        showHomePage();
+        let hero = document.querySelector(".hero");
+        let tutorialSection = document.getElementById("tutorial");
+        if (hero) hero.style.display = "none";
+        if (tutorialSection) tutorialSection.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     };
   }
 
@@ -501,12 +556,12 @@ if (dailyModeButton) {
   dailyModeButton.addEventListener("click", function () {
     runLoading(function () {
       document.body.classList.toggle("knowledge-mode-active", true);
-      document.body.classList.toggle("knowledge-navigation-hidden", false);
+      document.body.classList.toggle("knowledge-navigation-hidden", true);
       if (modeSwitch) {
         modeSwitch.style.display = "none";
       }
       homeSection.style.display = "none";
-      knowledgeSection.style.display = "";
+      knowledgeSection.style.display = "flex";
 
       if (canPlayDaily()) {
         startDailyQuiz();
@@ -527,12 +582,12 @@ if (dailyNavButton) {
 
     runLoading(function () {
       document.body.classList.toggle("knowledge-mode-active", true);
-      document.body.classList.toggle("knowledge-navigation-hidden", false);
+      document.body.classList.toggle("knowledge-navigation-hidden", true);
       if (modeSwitch) {
         modeSwitch.style.display = "none";
       }
       homeSection.style.display = "none";
-      knowledgeSection.style.display = "";
+      knowledgeSection.style.display = "flex";
 
       if (canPlayDaily()) {
         startDailyQuiz();
