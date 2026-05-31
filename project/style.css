@@ -1595,6 +1595,11 @@ body.knowledge-navigation-hidden footer {
   align-items: center;
   justify-content: center;
   padding: 0;
+  color: #ffffff;
+}
+
+.music-toggle-btn i {
+  color: #ffffff;
 }
 
 .music-toggle-btn:hover {
@@ -1658,6 +1663,11 @@ body.knowledge-navigation-hidden footer {
   text-align: center;
 }
 
+.music-btn i {
+  color: #ffffff;
+  margin-right: 5px;
+}
+
 .music-btn:hover {
   background: rgba(216, 139, 218, 0.3);
   border-color: #d88bda;
@@ -1675,9 +1685,17 @@ body.knowledge-navigation-hidden footer {
   font-weight: 600;
 }
 
+.music-btn.active i {
+  color: #1f1220;
+}
+
 .music-btn.muted {
   background: rgba(255, 100, 100, 0.3);
   border-color: rgba(255, 100, 100, 0.6);
+}
+
+.music-btn.muted i {
+  color: #ffffff;
 }
 
 /* Responsive Design */
