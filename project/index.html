@@ -12,6 +12,7 @@
     <script type="module" src="./scripts/dailys.js" defer></script>
     <script type="module" src="./scripts/achievements.js" defer></script>
     <script type="module" src="./scripts/shop.js" defer></script>
+    <script src="./scripts/music.js" defer></script>
   </head>
   <body>
     <div id="loadingScreen" aria-live="polite" aria-label="Loading screen">
@@ -487,5 +488,36 @@
         <p>&copy; 2026 Fact Forge - School Project</p>
       </div>
     </footer>
+
+    <!-- Music Player Controls -->
+    <div class="music-widget">
+      <button
+        class="music-toggle-btn"
+        onclick="toggleMusicMenu()"
+        title="Toggle Music Menu"
+      >
+        <i class="fas fa-music"></i>
+      </button>
+
+      <div class="music-menu" id="musicMenu">
+        <div class="music-menu-title">Background Music</div>
+
+        <button id="musicSong1" class="music-btn song-btn" title="Play Song 1">
+          <i class="fas fa-music"></i> Bad Memories
+        </button>
+
+        <button id="musicSong2" class="music-btn song-btn" title="Play Song 2">
+          <i class="fas fa-music"></i> Jungle
+        </button>
+
+        <button id="musicSong3" class="music-btn song-btn" title="Play Song 3">
+          <i class="fas fa-music"></i> Kygo
+        </button>
+
+        <button id="musicMute" class="music-btn mute-btn" title="Toggle Mute">
+          <i class="fas fa-volume-up"></i>
+        </button>
+      </div>
+    </div>
   </body>
 </html>

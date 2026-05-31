@@ -1569,3 +1569,136 @@ body.knowledge-navigation-hidden footer {
     opacity: 0;
   }
 }
+
+/* ====================================== */
+/* ======== Music Widget Styling ======== */
+/* ====================================== */
+
+.music-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+.music-toggle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d88bda 0%, #d373c5 100%);
+  border: 3px solid #ffffff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(97, 48, 130, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.music-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(97, 48, 130, 0.6);
+}
+
+.music-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.music-menu {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  background: linear-gradient(135deg, #6130828f 0%, #4a1f548f 100%);
+  backdrop-filter: blur(10px);
+  border: 2px solid #d88bda;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(97, 48, 130, 0.5);
+}
+
+.music-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.music-menu-title {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 5px;
+}
+
+.music-btn {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(216, 139, 218, 0.6);
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.music-btn:hover {
+  background: rgba(216, 139, 218, 0.3);
+  border-color: #d88bda;
+  transform: translateX(5px);
+}
+
+.music-btn:active {
+  transform: translateX(3px) scale(0.98);
+}
+
+.music-btn.active {
+  background: #d88bda;
+  border-color: #ffffff;
+  color: #1f1220;
+  font-weight: 600;
+}
+
+.music-btn.muted {
+  background: rgba(255, 100, 100, 0.3);
+  border-color: rgba(255, 100, 100, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .music-widget {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .music-toggle-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .music-menu {
+    min-width: 140px;
+  }
+
+  .music-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
