@@ -262,6 +262,17 @@ function showHomePage() {
   knowledgeSection.style.display = "none";
   userPage.style.display = "none";
   shopSection.style.display = "none";
+
+  let manualIcons = document.querySelector(".manual-icons");
+  let headlineIcons = document.querySelectorAll(".headline-icon");
+
+  if (manualIcons) {
+    manualIcons.style.display = "";
+  }
+  headlineIcons.forEach((icon) => {
+    icon.style.display = "";
+  });
+
   handleFirstVisitLayout();
 }
 
@@ -275,6 +286,16 @@ userButton.addEventListener("click", function (event) {
     knowledgeSection.style.display = "none";
     shopSection.style.display = "none";
     userPage.style.display = "flex";
+
+    let manualIcons = document.querySelector(".manual-icons");
+    let headlineIcons = document.querySelectorAll(".headline-icon");
+
+    if (manualIcons) {
+      manualIcons.style.display = "";
+    }
+    headlineIcons.forEach((icon) => {
+      icon.style.display = "";
+    });
   });
 });
 
@@ -286,6 +307,17 @@ shopButton.addEventListener("click", function (event) {
     knowledgeSection.style.display = "none";
     userPage.style.display = "none";
     shopSection.style.display = "block";
+
+    let manualIcons = document.querySelector(".manual-icons");
+    let headlineIcons = document.querySelectorAll(".headline-icon");
+
+    if (manualIcons) {
+      manualIcons.style.display = "none";
+    }
+    headlineIcons.forEach((icon) => {
+      icon.style.display = "none";
+    });
+
     updateShopDisplay();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -548,7 +580,7 @@ function nextStep() {
   }
 }
 
-// Fuehrt den nächsten Quiz-Schritt mit kurzer Verzögerung aus.
+
 function answerDone(delay) {
   setTimeout(function () {
     nextStep();

@@ -50,10 +50,19 @@ export function openShop() {
   let knowledgeSection = document.getElementById("knowledge");
   let userPage = document.getElementById("UserPage");
   let shop = document.getElementById("shop");
+  let manualIcons = document.querySelector(".manual-icons");
+  let headlineIcons = document.querySelectorAll(".headline-icon");
 
   homeSection.style.display = "none";
   knowledgeSection.style.display = "none";
   userPage.style.display = "none";
+
+  if (manualIcons) {
+    manualIcons.style.display = "none";
+  }
+  headlineIcons.forEach((icon) => {
+    icon.style.display = "none";
+  });
 
   shop.style.display = "block";
 
@@ -193,7 +202,6 @@ export function loadBoosts() {
   }
 }
 
-
 //KI
 function loadTimers() {
   let saved = localStorage.getItem("shopTimers");
@@ -213,9 +221,7 @@ function saveTimers() {
   localStorage.setItem("shopTimers", JSON.stringify(shopTimers));
 }
 
-
 function startTimerInterval() {
-
   if (timerInterval) {
     clearInterval(timerInterval);
   }
